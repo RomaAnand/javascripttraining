@@ -10,6 +10,7 @@
    - If yes, print: `"Valid email format"`
    - If no, print: `"Invalid email format"`
    */
+console.log("========Exercise 1: Customer Email Validation========");
 var email = "customer@examplebank.com";
 if (email.includes("@") && email.includes(".")) {
   console.log("Valid email format");
@@ -39,7 +40,7 @@ Try running your code with each of these values:
 - `"ON_HOLD"`
 
 */
-
+console.log("=====Exercise 2: Transaction Status Categorizer=====");
 var transactionStatus = "APPROVED";
 if (transactionStatus === "APPROVED") {
   console.log("Transaction Status: " + transactionStatus);
@@ -67,6 +68,9 @@ if (transactionStatus === "APPROVED") {
    - Less than 10 characters -> `"Medium password strength"`
    - 10 or more characters -> `"Strong password"`
 */
+console.log(
+  "========Exercise 3: Online Banking Password Strength Checker========",
+);
 var portalPassword = "Bank@123";
 if (portalPassword.length < 6) {
   console.log("Weak password - too short");
@@ -91,8 +95,8 @@ if (portalPassword.length < 6) {
    - 60-69 -> `"Grade: D (Pass)"`
    - Below 60 -> `"Grade: F (Fail)"`
 */
-
-var score = 85;
+console.log("========Exercise 4: Loan Risk Score Grading========");
+var score = 90;
 if (score >= 90) {
   console.log("Grade: A (Excellent)");
 } else if (score >= 80) {
@@ -103,4 +107,50 @@ if (score >= 90) {
   console.log("Grade: D (Pass)");
 } else {
   console.log("Grade: F (Fail)");
+}
+
+/*
+## Exercise 6: Switch - Basic Value Matching
+
+**Scenario:** Exercise 2 used if-else-if to handle transaction statuses. 
+Rewrite it using `switch` and notice how much cleaner it reads when matching 
+one variable against several fixed values.
+
+**Requirements:**
+1. Create a variable `transactionStatus` with value `"DECLINED"`
+2. Use a `switch` statement to print:
+   - `"APPROVED"` -> `"Transaction approved"`
+   - `"DECLINED"` -> `"Transaction declined - contact your bank"`
+   - `"PENDING"` -> `"Transaction pending"`
+   - `"ON_HOLD"` -> `"Transaction on hold - review required"`
+   - anything else -> `"Unknown transaction status"`
+
+**Starter template:**
+```javascript
+let transactionStatus = "DECLINED";
+
+switch (transactionStatus) {
+    case "APPROVED":
+        // your code
+        break;
+    // add remaining cases
+}
+*/
+console.log("========Exercise 6: Switch - Basic Value Matching========");
+let transactionStatus1 = "DECLINED";
+switch (transactionStatus1) {
+  case "APPROVED":
+    console.log("Transaction approved");
+    break;
+  case "DECLINED":
+    console.log("Transaction declined - contact your bank");
+    break;
+  case "PENDING":
+    console.log("Transaction pending");
+    break;
+  case "ON_HOLD":
+    console.log("Transaction on hold - review required");
+    break;
+  default:
+    console.log("Unknown transaction status");
 }
