@@ -154,3 +154,80 @@ switch (transactionStatus1) {
   default:
     console.log("Unknown transaction status");
 }
+
+/*
+**Tricky question:** What happens if you remove all the `break` statements? Predict before trying.
+
+Answer - That means once a matching case is found, it executes that case and every case after it until 
+the end of the switch
+
+*/
+/*## Exercise 7: Switch - Grouping Cases (Multiple Cases, One Outcome)
+
+**Scenario:** Map transaction response codes to categories. Some codes share the same message - use fall-through to group them.
+
+**Requirements:**
+
+```javascript
+let responseCode = 51;
+
+switch (responseCode) {
+    case 0:
+        // "Approved - transaction successful"
+        break;
+    case 8:
+        // "Approved - ID verification required"
+        break;
+    case 5:
+    case 51:
+    case 61:
+        // Group these: "Declined - insufficient funds or over limit"
+        // (5, 51, and 61 all print the same message - intentional fall-through)
+        break;
+    case 54:
+        // "Declined - expired card"
+        break;
+    case 91:
+    case 96:
+    case 99:
+        // Group these: "System error - try again later"
+        break;
+    default:
+        // "Unknown response code: " + responseCode
+}
+*/
+console.log(
+  "=====Exercise 7: Switch - Grouping Cases (Multiple Cases, One Outcome)=====",
+);
+let responseCode = 100;
+switch (responseCode) {
+  case 0:
+    console.log(
+      `Response Code is ${responseCode} = Approved - transaction successful`,
+    );
+    break;
+  case 8:
+    console.log(
+      `Response Code is ${responseCode} = Approved - ID verification required`,
+    );
+    break;
+  case 5:
+  case 51:
+  case 61:
+    console.log(
+      `Response Code is ${responseCode} = Declined - insufficient funds or over limit`,
+    );
+    break;
+  case 54:
+    console.log(`Response Code is ${responseCode} = Declined - expired card`);
+    break;
+  case 91:
+  case 96:
+  case 99:
+    console.log(
+      `Response Code is ${responseCode} = System error - try again later`,
+    );
+    break;
+  default:
+    console.log(`Response Code is ${responseCode} = Unknown response code`);
+}
