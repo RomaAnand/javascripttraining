@@ -289,3 +289,142 @@ for (let score of scores) {
   }
   console.log("----------------");
 }
+/*
+### 8b: Switch on `true` - range matching with expressions
+
+When you need range checks but want switch style, switch on the literal `true` 
+and put the condition in each `case`:
+
+```javascript
+let processingTime = 3.5;  // transaction processing time in seconds
+
+switch (true) {
+    case processingTime < 1:
+        console.log("Instant processing");
+        break;
+    case processingTime < 3:
+        console.log("Fast processing");
+        break;
+    case processingTime < 6:
+        console.log("Acceptable - flag if this becomes a trend");
+        break;
+    default:
+        console.log("Slow - investigate the delay");
+}
+```
+
+**Test with processing times:** `0.5`, `2`, `4`, `8`
+
+**Note:** `switch(true)` works because each `case` expression evaluates to `true` or `false`. The first `case` that equals `true` wins. Use this sparingly - if-else-if is often clearer for ranges.
+*/
+console.log(
+  "=====Exercise 8b Using Switch case: Switch on `true` - range matching with expressions=====",
+);
+let processingTime = 8;
+// transaction processing time in seconds, tested with time 0.5`, `2`, `4`, `8`
+
+switch (true) {
+  case processingTime < 1:
+    console.log("Instant processing");
+    break;
+  case processingTime < 3:
+    console.log("Fast processing");
+    break;
+  case processingTime < 6:
+    console.log("Acceptable - flag if this becomes a trend");
+    break;
+  default:
+    console.log("Slow - investigate the delay");
+}
+console.log(
+  "=====Exercise 8b Using if-else-if : Switch on `true` - range matching with expressions=====",
+);
+let processingTime1 = 0.5;
+if (processingTime1 < 1) {
+  console.log("Instant processing");
+} else if (processingTime1 < 3) {
+  console.log("Fast processing");
+} else if (processingTime1 < 6) {
+  console.log("Acceptable - flag if this becomes a trend");
+} else {
+  console.log("Slow - investigate the delay");
+}
+/*
+### 8c: Tricky questions - predict the output before running
+
+**Snippet A - what prints?**
+```javascript
+*/
+console.log(
+  "===Exercise 8c: Tricky questions - predict the output before running=== ",
+);
+let alertPriority = "high";
+
+switch (alertPriority) {
+  case "High":
+    console.log("Urgent");
+    break;
+  case "high":
+    console.log("Also urgent"); // Correct Answer
+    break;
+} /*
+
+**Snippet B - what prints?**
+```javascript
+*/
+console.log("===Snippet B - what prints===");
+let x = 2;
+
+switch (x) {
+  case 1:
+    console.log("one"); // break statement missing
+    break;
+  case 2:
+    console.log("two");
+    break;
+  case 3:
+    console.log("three");
+    break;
+  default:
+    console.log("other");
+}
+/*
+ **Snippet C - switch vs if-else, which should you choose?**
+
+| Situation | Better choice |
+|---|---|
+| Matching one variable against 5+ fixed string/number values | `switch` |
+| Checking ranges (`score >= 80`) | `if-else-if` |
+| Multiple conditions combined with `&&` or `||` | `if-else-if` |
+| Grouping several values with the same outcome | `switch` (fall-through) |
+| Just two outcomes | ternary or `if-else` |
+*/
+console.log(
+  "===Snippet C using Switch case - switch vs if-else, which should you choose?===",
+);
+let score5 = 85;
+
+if (score5 >= 90) {
+  console.log("Grade A");
+} else if (score5 >= 80) {
+  console.log("Grade B");
+} else if (score5 >= 70) {
+  console.log("Grade C");
+} else {
+  console.log("Fail");
+}
+
+console.log(
+  "===Snippet C using if-else case - switch vs if-else, which should you choose?===",
+);
+let day = "Saturday";
+
+switch (day) {
+  case "Saturday":
+  case "Sunday":
+    console.log("Weekend");
+    break;
+
+  default:
+    console.log("Weekday");
+}
