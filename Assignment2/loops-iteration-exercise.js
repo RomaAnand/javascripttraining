@@ -169,6 +169,7 @@ console.log("Lowest Score :", lowest);
    - Find and print ONLY the cancelled appointments with their types
    - Count total cancellations
 */
+console.log("");
 console.log("===Exercise 4: Find Cancelled Appointments===");
 const appointmentTypes = [
   "Checkup",
@@ -227,6 +228,8 @@ Find the first patient who has waited more than 30 minutes, then stop checking.
    - If the wait time is over 30, print an alert and use `break`
 4. After the loop, print how many patients were checked
 */
+console.log("");
+console.log("=====Exercise 4 Part A: Find Cancelled Appointments=====");
 const waitTimes = [12, 18, 35, 8, 42];
 let checkedCount = 0;
 console.log("Checking wait times (stop at the first one over 30 min):");
@@ -240,3 +243,111 @@ for (let i = 0; i < waitTimes.length; i++) {
 }
 
 console.log(`\nChecked ${checkedCount} of ${waitTimes.length} patients`);
+
+/*
+### Part B: continue
+Average today's temperature readings. Some readings weren't taken and are stored as 0. They must not count towards the average.
+**Requirements:**
+1. Create an array called `temperatures` with these values: 98.6, 0, 101.2, 99.1, 0, 102.4
+2. Create `total` and `readingsUsed`, both starting at 0
+3. Use a for loop. In each round:
+   - If the reading is 0, print that it wasn't taken and use `continue`
+   - Otherwise, add it to `total`, add 1 to `readingsUsed`, and print it
+4. After the loop, print how many readings were used and the average, rounded with `.toFixed(1)`
+*/
+console.log("");
+console.log("=====  Exercise 4 Part B  =====");
+const temperatures = [98.6, 0, 101.2, 99.1, 0, 102.4];
+let total1 = 0;
+let readingsUsed = 0;
+
+console.log("Temperature Readings :");
+
+for (let i = 0; i < temperatures.length; i++) {
+  if (temperatures[i] === 0) {
+    console.log(`Reading ${i + 1} : not taken, skipping`);
+    continue;
+  }
+  total1 += temperatures[i];
+  readingsUsed++;
+  console.log(`Reading ${i + 1} : ${temperatures[i]} `);
+
+  //Calculate and print average
+  let average = total1 / readingsUsed;
+  console.log(`Reading Used : ${readingsUsed} of ${temperatures.length} `);
+  console.log(`Average temperature : ${average.toFixed(1)}`);
+}
+
+/*
+## Exercise 5: Retry Logic with do...while
+
+**Scenario:** Implement retry logic for an appointment booking system that occasionally fails to connect.
+
+**Requirements:**
+1. Create a function called `bookAppointment()` that randomly returns true or false:
+   ```javascript
+   function bookAppointment() {
+       return Math.random() > 0.7;  // 30% success rate
+   }
+   ```
+
+2. Use a do...while loop to:
+   - Attempt the booking at least once
+   - Keep trying until it succeeds OR max attempts reached
+   - Track the number of attempts
+   - Print the status of each attempt
+
+3. Variables to create:
+   - `appointmentType`: "MRI Scan"
+   - `attempts`: 0
+   - `maxAttempts`: 5
+   - `bookingConfirmed`: false
+
+4. After the loop, print whether the booking eventually succeeded or failed
+*/
+console.log("");
+console.log("=====  Exercise 5: Retry Logic with do...while  =====");
+// Function that randomly succeeds 30% of the time
+function bookAppointment() {
+  return Math.random() > 0.7;
+}
+
+// Variables
+let appointmentType = "MRI Scan";
+let attempts = 0;
+let maxAttempts = 5;
+let bookingConfirmed = true;
+
+console.log("Appointment Booking Retry");
+console.log("━━━━━━━━━━━━━━━━━━━━━━━━━");
+console.log("");
+console.log(`Booking: ${appointmentType}`);
+console.log(`Max attempts: ${maxAttempts}`);
+console.log("");
+
+// Retry logic
+do {
+  attempts++;
+  console.log(`Attempt ${attempts}...`);
+
+  bookingConfirmed = bookAppointment();
+
+  if (bookingConfirmed) {
+    console.log("  Booking CONFIRMED!");
+  } else {
+    console.log("  Booking FAILED");
+
+    if (attempts < maxAttempts) {
+      console.log("  Retrying...");
+    }
+  }
+
+  console.log("");
+} while (!bookingConfirmed && attempts < maxAttempts);
+
+// Final result
+if (bookingConfirmed) {
+  console.log(`Booking confirmed on attempt ${attempts}`);
+} else {
+  console.log(`Booking failed after ${maxAttempts} attempts`);
+}
