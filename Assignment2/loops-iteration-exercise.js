@@ -155,3 +155,88 @@ console.log("Total score :", total);
 console.log("Average Score :", average);
 console.log("Highest Score :", highest);
 console.log("Lowest Score :", lowest);
+
+/*Exercise 4: Find Cancelled Appointments
+**Scenario:** Identify and report all cancelled appointments from a day's schedule.
+
+**Requirements:**
+1. Create two parallel arrays:
+   - `appointmentTypes`: ["Checkup", "Dental", "Eye Exam", "Vaccination", "Blood Test", "Follow-up"]
+   - `appointmentOutcomes`: ["COMPLETED", "CANCELLED", "COMPLETED", "CANCELLED", "COMPLETED", "CANCELLED"]
+
+2. Use a for loop to:
+   - Print all appointment outcomes
+   - Find and print ONLY the cancelled appointments with their types
+   - Count total cancellations
+*/
+console.log("===Exercise 4: Find Cancelled Appointments===");
+const appointmentTypes = [
+  "Checkup",
+  "Dental",
+  "Eye Exam",
+  "Vaccination",
+  "Blood Test",
+  "Follow-up",
+];
+const appointmentOutcomes = [
+  "COMPLETED",
+  "CANCELLED",
+  "COMPLETED",
+  "CANCELLED",
+  "COMPLETED",
+  "CANCELLED",
+];
+
+let cancellationCount = 0;
+
+console.log("Daily Appointment Report");
+console.log("━━━━━━━━━━━━━━━━━━━━━━━━━");
+console.log("\nAll Appointments:");
+for (let i = 0; i < appointmentTypes.length; i++) {
+  console.log(`${i + 1}. ${appointmentTypes[i]} : ${appointmentOutcomes[i]}`);
+}
+console.log("\nCancelled Appointments (need rebooking):");
+
+for (i = 0; i < appointmentTypes.length; i++) {
+  if (appointmentOutcomes[i] === "CANCELLED") {
+    console.log(`- ${appointmentTypes[i]}`);
+    cancellationCount++;
+  }
+}
+console.log("");
+console.log(" Total cancellations :", cancellationCount);
+
+/*
+## Exercise 4.5: Stop Early with break, Skip with continue
+
+**Scenario:** The front desk runs two quick checks on today's queue.
+
+- `break` stops the **whole loop**.
+- `continue` skips the **rest of this round** and moves on to the next one.
+
+### Part A: break
+
+Find the first patient who has waited more than 30 minutes, then stop checking.
+
+**Requirements:**
+1. Create an array called `waitTimes` with these values: 12, 18, 35, 8, 42
+2. Create a counter `checkedCount` starting at 0
+3. Use a for loop. In each round:
+   - Add 1 to `checkedCount`
+   - Print the patient number and wait time
+   - If the wait time is over 30, print an alert and use `break`
+4. After the loop, print how many patients were checked
+*/
+const waitTimes = [12, 18, 35, 8, 42];
+let checkedCount = 0;
+console.log("Checking wait times (stop at the first one over 30 min):");
+for (let i = 0; i < waitTimes.length; i++) {
+  checkedCount++;
+  console.log(`patient ${i + 1}: ${waitTimes[i]} min`);
+  if (waitTimes[i] > 30) {
+    console.log("  Over 30 minutes! Alerting the doctor.");
+    break;
+  }
+}
+
+console.log(`\nChecked ${checkedCount} of ${waitTimes.length} patients`);
