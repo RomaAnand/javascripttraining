@@ -117,3 +117,41 @@ console.log(`  Rescheduled: ${rescheduledCount}`);
 
 console.log(`\n  Completion rate: ${completionRate}%`);
 console.log(`  Cancellation rate: ${cancellationRate}%`);
+
+/*
+## Exercise 3: Calculate Patient Satisfaction Scores
+**Scenario:** Calculate statistics for a batch of patient satisfaction survey scores.
+**Requirements:**
+1. Create an array called `satisfactionScores` with these values:
+   - 85, 92, 78, 95, 88, 73, 90, 87
+
+2. Use a for loop to calculate:
+   - Total of all scores
+   - Average score
+   - Highest score (you'll need to track this as you loop)
+   - Lowest score (you'll need to track this as you loop)
+*/
+console.log("=== Exercise 3: Calculate Patient Satisfaction Scores ===");
+const satisfactionScores = [85, 92, 78, 95, 88, 73, 90, 87];
+let total = 0;
+let highest = satisfactionScores[0];
+let lowest = satisfactionScores[0];
+//Loop through all scores
+for (let i = 0; i < satisfactionScores.length; i++) {
+  total += satisfactionScores[i];
+
+  if (satisfactionScores[i] > highest) {
+    highest = satisfactionScores[i];
+  }
+  if (satisfactionScores[i] < lowest) {
+    lowest = satisfactionScores[i];
+  }
+}
+
+// Calculate average
+let average = total / satisfactionScores.length;
+//Print Result
+console.log("Total score :", total);
+console.log("Average Score :", average);
+console.log("Highest Score :", highest);
+console.log("Lowest Score :", lowest);
