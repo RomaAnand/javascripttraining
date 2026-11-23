@@ -242,10 +242,123 @@ class BenefitsEnrollment {
     this.selections.push({ name: name, cost: cost });
     console.log(`Added: ${name} ($${cost})`);
   }
-  removeBenefit(name) {}
-  getTotalCost() {}
-  listBenefits() {}
+  removeBenefit(name) {
+    // removes the item with that name from `this.selections` (hint: `.filter()`),
+    // and prints `"Removed: <name>"`.
+    this.selections = this.selections.filter(
+      (benefit) => benefit.name !== name,
+    );
+
+    console.log(`Removed: ${name}`);
+  }
+  getTotalCost() {
+    // **returns** the sum of all selection costs currently enrolled (hint: `.reduce()`).
+    return this.selections.reduce((total, benefit) => total + benefit.cost, 0);
+  }
+  listBenefits() {
+    //prints `"Selected benefits:"` followed by each item as `"  - <name>: $<cost>"`.
+    console.log("Selected benefits:");
+    this.selections.forEach((benefit) => {
+      console.log(`  - ${benefit.name}: $${benefit.cost}`);
+    });
+  }
 }
 
 // Create an enrollment, add "Dental Plan" ($40), "Vision Plan" ($20), and "Health Plan" ($150). Remove "Vision Plan".
 // List the remaining benefits, then print the total.
+// Create enrollment
+const enrollment = new BenefitsEnrollment();
+
+// Add benefits
+enrollment.addBenefit("Dental Plan", 40);
+enrollment.addBenefit("Vision Plan", 20);
+enrollment.addBenefit("Health Plan", 150);
+
+// Remove benefit
+enrollment.removeBenefit("Vision Plan");
+
+// List remaining benefits
+enrollment.listBenefits();
+
+// Print total
+console.log(`Total: $${enrollment.getTotalCost()}`);
+/*
+## Exercise 7 (Complex): PayrollBatch Class (Private Fields & Methods)
+**Scenario:** A payroll batch needs to track its own internal access code and a processing log, neither of which the rest of the program should be able to read or overwrite directly.
+**Requirements:**
+1. Create a class called `PayrollBatch` with:
+   - Public field: `name = "Unnamed Batch"`
+   - Public field: `entries = []`
+   - Private field: `#accessCode = "secret-code-98765"`
+   - Private field: `#processingLog = []`
+2. Add a constructor that accepts `name` and sets `this.name = name`.
+3. Add a method `addEntry(employeeName)` that pushes `employeeName` into `entries`, then calls a **private method** to record what happened.
+4. Add a **private method** `#log(message)` that pushes `` `[Entry #<n>] <message>` `` into `#processingLog`, where `<n>` is the log's new length (1-based, so the first entry is `#1`).
+5. Add a public method `getLog()` that returns `#processingLog`.
+6. Add a method `run()` that:
+   - Prints `"  Running batch: <name>"`
+   - Prints `"  Entries: <entries joined with ', '>"`
+   - Calls `#log` with the message `"Batch run with <count> entries"`
+7. Create a `PayrollBatch` called "March Payroll", add three entries ("Aisha Khan", "Raj Verma", "Meera Nair"), run it, then print every entry in the log.
+8. Print `batch.name` and `batch.entries` to show public fields are readable from outside the class.
+*/
+
+console.log("=== Exercise 7: PayrollBatch Class ===");
+
+class PayrollBatch {
+  // Public fields
+  name = "Unnamed Batch";
+  entries = [];
+
+  // Private fields
+  #accessCode = "secret-code-98765"; // # makes the variable private
+  #processingLog = []; // # makes the variable private
+
+  constructor(name) {
+    this.name = name;
+  }
+
+  addEntry(employeeName) {
+    this.entries.push(employeeName);
+    this.#log(`Added entry: ${employeeName}`);
+  }
+
+  // Private method
+  #log(message) {
+    const entryNumber = this.#processingLog.length + 1;
+    this.#processingLog.push(`[Entry #${entryNumber}] ${message}`);
+  }
+
+  getLog() {
+    return this.#processingLog;
+  }
+
+  run() {
+    console.log(`  Running batch: ${this.name}`);
+    console.log(`  Entries: ${this.entries.join(", ")}`);
+
+    this.#log(`Batch run with ${this.entries.length} entries`);
+  }
+}
+
+// Create payroll batch
+const batch = new PayrollBatch("March Payroll");
+
+// Add entries
+batch.addEntry("Aisha Khan");
+batch.addEntry("Raj Verma");
+batch.addEntry("Meera Nair");
+
+// Run batch
+batch.run();
+
+// Print log
+console.log("\n  Processing log:");
+batch.getLog().forEach((logEntry) => {
+  console.log(`    ${logEntry}`);
+});
+
+// Show public fields
+console.log("\n  Public fields are accessible:");
+console.log(`    batch.name: ${batch.name}`);
+console.log(`    batch.entries: ${batch.entries}`);

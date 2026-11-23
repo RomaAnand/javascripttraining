@@ -26,7 +26,7 @@ console.log("After removal:", claimList);
 //4. **Step 2 - Insert:** Use `.splice()` to insert `"Marine"` and `"Pet"` at index 1,
 // **without removing anything** (`deleteCount` of 0). Print the array afterward.
 // 4. Step 2 - Insert
-claimList.splice(1, 0, "Marine", "Pet");
+claimList.splice(1, 0, "Marine", "Pet"); //2nd parameter to be removed
 console.log("After insertion:", claimList);
 // 5. Step 3 - Replace the element at index 0 with `"Motorcycle"`.
 // Print the array afterward.
