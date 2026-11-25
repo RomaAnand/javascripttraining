@@ -355,6 +355,4 @@ new String("hello") → object
 == converts the object to a primitive.
 
 === does not.
-
-
-
+*/
